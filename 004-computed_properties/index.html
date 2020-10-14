@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue options - Computed properties</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ evenNumbersCount }}
+
+        {{ message }}: {{ reversedMessage }}
+
+        <button @click="changeMessage">Change the message!</button>
+
+        Sudá:
+        {{ evenNumbersCount }}
+        
+        <br>
+
+        <button @click="showCounts">Click</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                query: ''
+            },
+
+            methods: {
+                changeMessage() {
+                    this.message = 'Hell World!';
+                },
+
+                showCounts () {
+                    alert(`Lichá: ${this.oddNumbersCount()}, Sudá: ${this.evenNumbersCount}`)
+                },
+
+                oddNumbersCount () {
+                    console.log('Calculating odd numbers');
+                    return this.numbers.filter(i => i % 2 !== 0).length;
+                }
+            },
+
+            computed: {
+                evenNumbersCount () {
+                    console.log('Calculating even numbers');
+                    return this.numbers.filter(i => i % 2 === 0).length;
+                },
+
+                reversedMessage () {
+                    return this.message.split('').reverse().join('');
+                },
+            },
+
+            watch: {
+                
+            }
+        });
+    </script>
+</body>
+</html>
